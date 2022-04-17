@@ -37,9 +37,6 @@ def my_form_post():
 
     location = request.form['location']
 
-    #PATH = "/Users/williamli/Documents/GitHub/grand-and-toy/chromedriver-2"
-    #driver = webdriver.Chrome(PATH)
-
     driver.get("https://www.google.ca/")
 
     search = driver.find_element(by=By.CLASS_NAME, value="gLFyf")
@@ -47,7 +44,7 @@ def my_form_post():
     search.send_keys(search_string) 
     search.send_keys(Keys.RETURN)
 
-    driver.implicitly_wait(30)
+    #driver.implicitly_wait(30)
 
     result = {}
 
@@ -59,8 +56,6 @@ def my_form_post():
             title = item.find_element_by_class_name("LC20lb").text
             desc = item.find_element_by_class_name("VwiC3b").text
             result[title] = desc
-        #descs = [descriptions.append(element.find_element_by_class_name("VwiC3b").text) for element in list_elements]
-        #descriptions.append(descs)
         try:
             link = driver.find_element_by_link_text("Next")
             link.click()
@@ -77,3 +72,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
