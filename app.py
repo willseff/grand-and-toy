@@ -26,8 +26,8 @@ def my_form_post():
 
     location = request.form['location']
 
-    PATH = "/Users/williamli/Documents/GitHub/grand-and-toy/chromedriver-2"
-    driver = webdriver.Chrome(PATH)
+    #PATH = "/Users/williamli/Documents/GitHub/grand-and-toy/chromedriver-2"
+    #driver = webdriver.Chrome(PATH)
 
     driver.get("https://www.google.ca/")
 
