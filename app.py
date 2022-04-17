@@ -70,4 +70,4 @@ def my_form_post():
 
     return render_template("results.html", result=result)
 
-app.run(debug=True, host='0.0.0.0', port=8000)
+app.run(host='127.0.0.1', debug=True, port=8080, threaded=True)
