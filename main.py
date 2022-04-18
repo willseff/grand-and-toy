@@ -13,14 +13,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def my_form():
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
-
-
 
     return render_template('index.html')
 
@@ -44,8 +36,6 @@ def my_form_post():
     search.send_keys(search_string) 
     search.send_keys(Keys.RETURN)
 
-    #driver.implicitly_wait(30)
-
     result = {}
 
     for page in range(10):
@@ -62,8 +52,13 @@ def my_form_post():
         except:
             break
 
+    df = pd.DataFrame(result.items(), columns=['Name', 'Description'])
+    nlp = spacy.load("model")
+    df['Target'] = df['Description'].apply(lambda x:nlp(x)._.cats["Target"])
+    df.sort_values(by="Target",ascending=False)
 
-    return render_template("results.html", result=result)
+
+    return render_template('results.html',  tables=[df.to_html(classes='data')], titles=df.columns.values)
 
 
 def main():

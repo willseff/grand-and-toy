@@ -1,27 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Results</title>
+    <meta charset="UTF-8">
+    <title>Results</title>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for key, value in result.items() %}
-     <tr>
-         <td> {{ key }} </td>
-         <td> {{ value }} </td>
-     </tr>
-    {% endfor %}
-    </tbody>
-  </table>
 
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
 </body>
 </html>
