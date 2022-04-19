@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 import time
 import os
+import numpy as np
 
 
 
@@ -53,8 +54,11 @@ def my_form_post():
             break
 
     df = pd.DataFrame(result.items(), columns=['Name', 'Description'])
-    nlp = spacy.load("model")
-    df['Target'] = df['Description'].apply(lambda x:nlp(x)._.cats["Target"])
+
+    # randomly generated prediction values
+    randoms = np.random.randint(10000, size=len(df))/10000
+    df['Target'] = randoms
+
     df.sort_values(by="Target",ascending=False)
 
 
