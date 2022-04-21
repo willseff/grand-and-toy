@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Results</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
 </head>
+
+<h1>
+    List of Business Leads
+
+</h1>
+<p>The chart below shows the first 100 results of a Google search of Linkedin profiles, sorted by the likelyhood of a sales lead. </p>
+<p>The Target column is the likelyhood that the profile is in charge of buying supplies</p>
 <body>
 
 {% for table in tables %}
-            {{titles[loop.index]}}
             {{ table|safe }}
 {% endfor %}
 </body>
